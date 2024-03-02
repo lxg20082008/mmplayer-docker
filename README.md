@@ -5,12 +5,12 @@
 
 # build
 ```bash
-# docker build -t wujiyu115/mmplayer .
+# docker build -t lxg20082008/mmplayer .
 ```
 
 # run
 ```bash
-# docker run --name mm_player --restart always -dit -p 80:80 -v /mnt/music:/data wujiyu115/mmplayer:main
+# docker run --name mm_player --restart always -dit -p 80:80 -v /mnt/music:/data lxg20082008/mmplayer:main
 ```
 # version
 1.3
