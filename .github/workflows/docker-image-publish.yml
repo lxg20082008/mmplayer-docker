@@ -59,8 +59,10 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with: # 配置dockerhub的认证
           registry: ${{ env.REGISTRY }} # evn:定义的变量
-          username: ${{ github.actor }} # 预定义的GitHub环境变量。它表示触发GitHub Actions的事件中的操作者，即执行操作的GitHub用户或GitHub App。
-          password: ${{ secrets.MY_GITHUB_TOKEN }} # 在Github项目主页 【Settings】 -> 【Secrets】 添加对应变量
+          # username: ${{ github.actor }} # 预定义的GitHub环境变量。它表示触发GitHub Actions的事件中的操作者，即执行操作的GitHub用户或GitHub App。
+          # password: ${{ secrets.MY_GITHUB_TOKEN }} # 在Github项目主页 【Settings】 -> 【Secrets】 添加对应变量
+          username: ${{ secrets.DOCKERHUB_USERNAME }}  # 配置dockerhub的认证，在Github项目主页 【Settings】 -> 【Secrets】 添加对应变量
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Extract metadata (tags, labels) for Docker 提取Docker镜像的元数据
       # https://github.com/docker/metadata-action
