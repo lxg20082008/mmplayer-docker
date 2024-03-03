@@ -4,9 +4,6 @@ name: Docker
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-
-
-
 on:
   schedule:
     - cron: '31 8 * * *'
@@ -16,12 +13,14 @@ on:
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch: # 手动触发
 
 env:
   # Use docker.io for Docker Hub if empty
-  REGISTRY: ghcr.io
+  # REGISTRY: ghcr.io
+  REGISTRY: hub.docker.com
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }} # 预定义的GitHub环境变量，表示当前GitHub仓库的所有者和仓库名称的组合。
 
 
 jobs:
@@ -58,12 +57,12 @@ jobs:
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+        with: # 配置dockerhub的认证
+          registry: ${{ env.REGISTRY }} # evn:定义的变量
+          username: ${{ github.actor }} # 预定义的GitHub环境变量。它表示触发GitHub Actions的事件中的操作者，即执行操作的GitHub用户或GitHub App。
+          password: ${{ secrets.MY_GITHUB_TOKEN }} # 在Github项目主页 【Settings】 -> 【Secrets】 添加对应变量
 
-      # Extract metadata (tags, labels) for Docker
+      # Extract metadata (tags, labels) for Docker 提取Docker镜像的元数据
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
         id: meta
