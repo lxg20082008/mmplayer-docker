@@ -48,9 +48,9 @@ jobs:
         with:
           cosign-release: 'v2.1.1'
 
-      # 设置npm registry地址    
-      - name: Set npm registry
-        run: npm config set registry $NPM_REGISTRY
+      # # 设置npm registry地址    
+      # - name: Set npm registry
+      #   run: npm config set registry $NPM_REGISTRY
 
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
