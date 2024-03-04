@@ -1,0 +1,27 @@
+name: Test Variables
+
+on:
+  workflow_dispatch
+
+env:
+  # Use docker.io for Docker Hub if empty
+  # REGISTRY: ghcr.io
+  REGISTRY: hub.docker.com
+  # github.repository as <account>/<repo>
+  # IMAGE_NAME: ${{ github.repository }} # 预定义的GitHub环境变量，表示当前GitHub仓库的所有者和仓库名称的组合。
+  IMAGE_NAME: /${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.event.repository.default_branch }}
+
+jobs:
+  test-variables:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Output GitHub context
+      run: |
+        echo "GitHub Repository: ${{ github.repository }}"
+        echo "GitHub Repository Owner: ${{ github.repository_owner }}"
+        echo "GitHub Event Repository Name: ${{ github.event.repository.name }}"
+        echo "GitHub Event Repository Default Branch: ${{ github.event.repository.default_branch }}"
+        echo ${{ env.IMAGE_NAME }}
+        echo ${{ env.REGISTRY }}
+
