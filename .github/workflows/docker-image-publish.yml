@@ -21,6 +21,8 @@ env:
   REGISTRY: hub.docker.com
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }} # 预定义的GitHub环境变量，表示当前GitHub仓库的所有者和仓库名称的组合。
+  # 设置npm registry地址的环境变量
+  NPM_REGISTRY: "https://registry.npm.taobao.org/"
 
 
 jobs:
@@ -45,6 +47,10 @@ jobs:
         uses: sigstore/cosign-installer@v3.4.0 #v3.1.1
         with:
           cosign-release: 'v2.1.1'
+
+      # 设置npm registry地址    
+      - name: Set npm registry
+        run: npm config set registry $NPM_REGISTRY
 
       # Set up BuildKit Docker container builder to be able to build
       # multi-platform images and export cache
