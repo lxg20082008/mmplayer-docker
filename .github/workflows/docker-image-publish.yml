@@ -5,8 +5,8 @@ name: Docker
 # separate terms of service, privacy policy, and support
 # documentation.
 on:
-  schedule:
-    - cron: '31 8 * * *'
+  # schedule:
+  #   - cron: '31 8 * * *'
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
@@ -14,6 +14,8 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch: # 手动触发
+  repository_dispatch: # https://github.com/lxg20082008/Vue-mmPlayer 有更新时自动触发
+    types: [app_repo_updated]
 
 env:
   # Use docker.io for Docker Hub if empty
