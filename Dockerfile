@@ -42,6 +42,7 @@ RUN git clone https://github.com/lxg20082008/neteasecloudmusicapi.git
 WORKDIR /app/NeteaseCloudMusicApi
 RUN npm config set registry "https://registry.npmmirror.com/"
 RUN npm install -g npm husky
+RUN npm cache clean --force
 RUN npm install --production
 
 WORKDIR /app/NeteaseCloudMusicApi
