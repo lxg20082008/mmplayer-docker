@@ -31,7 +31,7 @@ COPY --from=mmPlayer_builder /app/Vue-mmPlayer/dist.zip ./
 RUN unzip dist.zip && rm -rf dist.zip
 
 # 将 default.conf 文件复制到镜像中的 /etc/nginx/http.d/ 目录下，用于配置 nginx 服务器。
-ADD default.conf /etc/nginx/http.d/
+COPY default.conf /etc/nginx/http.d/
 
 # 克隆neteasecloudmusicapi项目的代码仓库，并进入 NeteaseCloudMusicApi 目录。
 WORKDIR /app
@@ -43,13 +43,14 @@ WORKDIR /app/NeteaseCloudMusicApi
 RUN npm config set registry "https://registry.npmmirror.com/"
 RUN npm install -g npm husky
 RUN npm cache clean --force
-RUN npm install --production
+RUN rm -rf node_modules
+RUN npm install --production > npm_install_log.txt 2>&1
 
 WORKDIR /app/NeteaseCloudMusicApi
 
 # 将 docker-entrypoint.sh 和 check.sh 两个脚本文件复制到镜像中的当前工作目录下。
-ADD docker-entrypoint.sh ./
-ADD check.sh ./
+COPY docker-entrypoint.sh ./
+COPY check.sh ./
 
 # 为当前工作目录下的所有 .sh 脚本文件添加执行权限。
 RUN chmod +x /app/NeteaseCloudMusicApi/*.sh
