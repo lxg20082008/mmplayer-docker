@@ -22,9 +22,10 @@ env:
   # REGISTRY: ghcr.io
   REGISTRY: hub.docker.com
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }} # 预定义的GitHub环境变量，表示当前GitHub仓库的所有者和仓库名称的组合。
-  # 设置npm registry地址的环境变量
-  NPM_REGISTRY: "https://registry.npm.taobao.org/"
+  # IMAGE_NAME: ${{ github.repository }} # 预定义的GitHub环境变量，表示当前GitHub仓库的所有者和仓库名称的组合。
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.event.repository.default_branch }}
+  # # 设置npm registry地址的环境变量
+  # NPM_REGISTRY: "https://registry.npm.taobao.org/"
 
 
 jobs:
@@ -104,7 +105,8 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         env:
           # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-          TAGS: ${{ steps.meta.outputs.tags }}
+          # TAGS: ${{ steps.meta.outputs.tags }}
+          TAGS: ${{ env.IMAGE_NAME }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
