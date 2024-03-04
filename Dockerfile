@@ -40,11 +40,12 @@ RUN git clone https://github.com/lxg20082008/neteasecloudmusicapi.git
 # 清空 npm 缓存，设置 npm 仓库地址，并分别使用 --production 和 --loglevel verbose 选项安装依赖包
 # 安装 npm 和 husky，最后再次使用 --production 选项安装依赖包。
 WORKDIR /app/NeteaseCloudMusicApi
-RUN npm config set registry "https://registry.npmmirror.com/"
+# RUN npm config set registry "https://registry.npmmirror.com/"
+RUN npm config set registry "https://registry.npm.taobao.org/" 
 RUN npm install -g npm husky
 RUN npm cache clean --force
 RUN rm -rf node_modules
-RUN npm install --production > npm_install_log.txt 2>&1
+RUN npm install --production 2>&1 | tee npm_install_log.txt
 
 WORKDIR /app/NeteaseCloudMusicApi
 
