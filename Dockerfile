@@ -33,10 +33,10 @@ RUN unzip dist.zip && rm -rf dist.zip
 # 将 default.conf 文件复制到镜像中的 /etc/nginx/http.d/ 目录下，用于配置 nginx 服务器。
 COPY default.conf /etc/nginx/http.d/
 
-# 克隆neteasecloudmusicapi项目的代码仓库，并进入 NeteaseCloudMusicApi 目录。
+# 克隆NeteaseCloudMusicApi项目的代码仓库，并进入 NeteaseCloudMusicApi 目录。
 WORKDIR /app
-RUN git clone https://github.com/lxg20082008/neteasecloudmusicapi.git
-# RUN git clone https://${{ secrets.MY_GITHUB_USERNAME }}:${{ secrets.MY_GITHUB_TOKEN }}@github.com/lxg20082008/neteasecloudmusicapi.git
+RUN git clone https://github.com/lxg20082008/NeteaseCloudMusicApi.git
+# RUN git clone https://${{ secrets.MY_GITHUB_USERNAME }}:${{ secrets.MY_GITHUB_TOKEN }}@github.com/lxg20082008/NeteaseCloudMusicApi.git
 # 清空 npm 缓存，设置 npm 仓库地址，并分别使用 --production 和 --loglevel verbose 选项安装依赖包
 # 安装 npm 和 husky，最后再次使用 --production 选项安装依赖包。
 WORKDIR /app/NeteaseCloudMusicApi
