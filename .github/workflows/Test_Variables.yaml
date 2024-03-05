@@ -18,7 +18,7 @@ jobs:
     steps:
     - name: Output GitHub context
       run: |
-        echo "should be "$", not "＄""
+        echo 'should be "$", not "＄"'
         echo "GitHub Repository [ ＄{{ github.repository}} ]:" ${{ github.repository }}
         echo "GitHub Repository Owner [ ＄{{ github.repository_owner}} ]:" ${{ github.repository_owner }}
         echo "GitHub Event Repository Name [＄{{ github.event.repository.name}}']:" ${{ github.event.repository.name }}
