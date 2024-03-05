@@ -23,7 +23,8 @@ env:
   REGISTRY: hub.docker.com
   # github.repository as <account>/<repo>
   # IMAGE_NAME: ${{ github.repository }} # 预定义的GitHub环境变量，表示当前GitHub仓库的所有者和仓库名称的组合。
-  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.event.repository.default_branch }}
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
+  #:${{ github.event.repository.default_branch }}
   # # 设置npm registry地址的环境变量
   # NPM_REGISTRY: "https://registry.npm.taobao.org/"
 
