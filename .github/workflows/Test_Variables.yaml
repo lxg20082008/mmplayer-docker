@@ -21,7 +21,7 @@ jobs:
         echo "GitHub Repository [ ${{ toJson( github.repository ) }} ]:" ${{ github.repository }}
         echo "GitHub Repository Owner [ ${{ toJson( github.repository_owner ) }} ]:" ${{ github.repository_owner }}
         echo "GitHub Event Repository Name [${{ github.event.repository.name }}']:" ${{ github.event.repository.name }}
-        echo "GitHub Event Repository Default Branch [${{ github.event.repository.default_branch ) }} ]:" ${{ github.event.repository.default_branch }}
+        echo "GitHub Event Repository Default Branch [${{ toJson( github.event.repository.default_branch ) }} ]:" ${{ github.event.repository.default_branch }}
         echo "IMAGE_NAME [ ${{ toJson( env.IMAGE_NAME ) }} ]:" ${{ env.IMAGE_NAME }}
         echo "REGISTRY [ ${{ toJson( env.REGISTRY ) }} ]:" ${{ env.REGISTRY }}
         echo "images [ ${{ toJson( env.REGISTRY }}/${{ env.IMAGE_NAME ) }} ]:" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
