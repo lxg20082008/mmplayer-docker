@@ -29,8 +29,12 @@ env:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        arch: [x64, arm64]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }} # refer to line 33-34
 
     permissions:
       contents: read
