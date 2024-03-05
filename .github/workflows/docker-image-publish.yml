@@ -29,12 +29,8 @@ env:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        arch: [x64, arm64]
 
-    runs-on: ${{ matrix.os }} # refer to line 33-34
+    runs-on: ${{ matrix.os }}
 
     permissions:
       contents: read
@@ -92,6 +88,7 @@ jobs:
         uses: docker/build-push-action@v5 # v5.0.0
         with:
           context: .
+          platforms: linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }} # 见line 83
           labels: ${{ steps.meta.outputs.labels }}
