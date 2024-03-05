@@ -18,15 +18,15 @@ jobs:
     steps:
     - name: Output GitHub context
       run: |
-        echo "GitHub Repository [ '\${{ github.repository }} ']:" ${{ github.repository }}
-        echo "GitHub Repository Owner [ '\${{ github.repository_owner }} ']:" ${{ github.repository_owner }}
+        echo "GitHub Repository [ ${{ toJson( github.repository ) }} ]:" ${{ github.repository }}
+        echo "GitHub Repository Owner [ ${{ toJson( github.repository_owner ) }} ]:" ${{ github.repository_owner }}
         echo "GitHub Event Repository Name [${{ github.event.repository.name }}']:" ${{ github.event.repository.name }}
-        echo "GitHub Event Repository Default Branch [${{ github.event.repository.default_branch }} ']:" ${{ github.event.repository.default_branch }}
-        echo "IMAGE_NAME [ '\${{ env.IMAGE_NAME }} ']:" ${{ env.IMAGE_NAME }}
-        echo "REGISTRY [ '\${{ env.REGISTRY }} ']:" ${{ env.REGISTRY }}
-        echo "images [ '\${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} ']:" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        echo "tags [ '\${{ steps.meta.outputs.tags }} ']:" ${{ steps.meta.outputs.tags }}
-        echo "labels [ '\${{ steps.meta.outputs.labels }} ']:" ${{ steps.meta.outputs.labels }}
-        echo "TAGS [${{ env.IMAGE_NAME }} ']:" ${{ env.IMAGE_NAME }}
-        echo "DIGEST [ '\${{ steps.build-and-push.outputs.digest }} ']:" ${{ steps.build-and-push.outputs.digest }}
+        echo "GitHub Event Repository Default Branch [${{ github.event.repository.default_branch ) }} ]:" ${{ github.event.repository.default_branch }}
+        echo "IMAGE_NAME [ ${{ toJson( env.IMAGE_NAME ) }} ]:" ${{ env.IMAGE_NAME }}
+        echo "REGISTRY [ ${{ toJson( env.REGISTRY ) }} ]:" ${{ env.REGISTRY }}
+        echo "images [ ${{ toJson( env.REGISTRY }}/${{ env.IMAGE_NAME ) }} ]:" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        echo "tags [ ${{ toJson( steps.meta.outputs.tags ) }} ]:" ${{ steps.meta.outputs.tags }}
+        echo "labels [ ${{ toJson( steps.meta.outputs.labels ) }} ]:" ${{ steps.meta.outputs.labels }}
+        echo "TAGS [${{ env.IMAGE_NAME ) }} ]:" ${{ env.IMAGE_NAME }}
+        echo "DIGEST [ ${{ toJson( steps.build-and-push.outputs.digest ) }} ]:" ${{ steps.build-and-push.outputs.digest }}
 
