@@ -24,7 +24,7 @@ jobs:
         echo "GitHub Event Repository Default Branch [${{ format('{0}', github.event.repository.default_branch) }} ]:" ${{ github.event.repository.default_branch }}
         echo "IMAGE_NAME [ ${{ format('{0}', env.IMAGE_NAME) }} ]:" ${{ env.IMAGE_NAME }}
         echo "REGISTRY [ ${{ format('{0}', env.REGISTRY) }} ]:" ${{ env.REGISTRY }}
-        echo "images [ ${{ format('{0}', env.REGISTRY }}/${{ env.IMAGE_NAME) }} ]:" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        echo "images [ ${{ format('{0}', env.REGISTRY) }}/${{ format('{0}', env.IMAGE_NAME) }} ]:" ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         echo "tags [ ${{ format('{0}', steps.meta.outputs.tags) }} ]:" ${{ steps.meta.outputs.tags }}
         echo "labels [ ${{ format('{0}', steps.meta.outputs.labels) }} ]:" ${{ steps.meta.outputs.labels }}
         echo "TAGS [${{ format('{0}', env.IMAGE_NAME) }} ]:" ${{ env.IMAGE_NAME }}
