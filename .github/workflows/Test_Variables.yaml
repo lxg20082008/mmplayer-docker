@@ -29,4 +29,3 @@ jobs:
         echo "labels [ ${{ format('{0}', steps.meta.outputs.labels) }} ]:" ${{ steps.meta.outputs.labels }}
         echo "TAGS [${{ format('{0}', env.IMAGE_NAME) }} ]:" ${{ env.IMAGE_NAME }}
         echo "DIGEST [ ${{ format('{0}', steps.build-and-push.outputs.digest) }} ]:" ${{ steps.build-and-push.outputs.digest }}
-
