@@ -57,8 +57,7 @@ COPY check.sh ./
 RUN chmod +x /app/NeteaseCloudMusicApi/*.sh
 
 # 声明容器在运行时监听的端口号，包括 80、443 和 5001。
-# EXPOSE 80 443 5001
-EXPOSE 80 443 32100 5001
+EXPOSE 80 443 5001
 
 # 设置容器启动时运行的命令，即 docker-entrypoint.sh 脚本。
 ENTRYPOINT ["./docker-entrypoint.sh"]
