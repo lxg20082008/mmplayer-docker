@@ -44,7 +44,7 @@ RUN npm config set registry "https://registry.npmmirror.com/"
 RUN npm install -g npm husky
 RUN npm cache clean --force
 RUN rm -rf node_modules
-RUN npm install --production 2>&1 | tee npm_install_log.txt
+RUN npm install --production
 
 WORKDIR /app/NeteaseCloudMusicApi
 
@@ -56,7 +56,8 @@ COPY check.sh ./
 RUN chmod +x /app/NeteaseCloudMusicApi/*.sh
 
 # 声明容器在运行时监听的端口号，包括 80、443 和 5001。
-EXPOSE 80 443 5001
+# EXPOSE 80 443 5001
+EXPOSE 80 443 32100
 
 # 设置容器启动时运行的命令，即 docker-entrypoint.sh 脚本。
 ENTRYPOINT ["./docker-entrypoint.sh"]
