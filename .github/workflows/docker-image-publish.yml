@@ -44,6 +44,16 @@ jobs:
       id-token: write
 
     steps:
+      - name: Clear Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            /app/Vue-mmPlayer
+            /app/NeteaseCloudMusicApi
+          key: ${{ runner.os }}-cache-clone1-clone2  # 使用不同的键来区分不同的路径
+          restore-keys: |
+            ${{ runner.os }}-cache-clone1-clone2
+    
       - name: Checkout repository
         uses: actions/checkout@v3
 
