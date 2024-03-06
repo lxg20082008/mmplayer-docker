@@ -43,7 +43,7 @@ WORKDIR /app/NeteaseCloudMusicApi
 RUN npm config set registry "https://registry.npmmirror.com/"
 RUN npm install -g npm husky
 RUN npm cache clean --force
-RUN rm -rf node_modules
+# RUN rm -rf node_modules
 RUN npm install --production
 
 WORKDIR /app/NeteaseCloudMusicApi
