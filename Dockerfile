@@ -9,9 +9,7 @@ RUN apk update && apk add --no-cache wget curl git zip
 WORKDIR /app
 
 # 克隆 Vue-mmPlayer 项目的代码仓库，包括子模块, generating a dist.zip file.
-RUN git clone --recurse-submodules https://github.com/lxg20082008/Vue-mmPlayer.git?nocache=$(date +%s)
-env:
-CACHEBUST: ${{ github.run_id }} # 添加一个随机数作为缓存键
+RUN git clone --recurse-submodules https://github.com/lxg20082008/Vue-mmPlayer.git?nocache=$(date +%s) # 添加一个随机数作为缓存键，禁用缓存
 
 RUN cd Vue-mmPlayer \
 	&& echo 'VUE_APP_BASE_API_URL = /api' > .env \
