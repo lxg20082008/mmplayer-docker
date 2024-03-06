@@ -44,7 +44,8 @@ RUN npm config set registry "https://registry.npmmirror.com/"
 RUN npm install -g npm husky
 RUN npm cache clean --force
 # RUN rm -rf node_modules
-RUN npm install --production
+# 淘宝镜像过期。禁用SSL验证来绕过证书过期的问题 package-lock.json
+RUN npm config set strict-ssl false && npm install --omit=dev
 
 WORKDIR /app/NeteaseCloudMusicApi
 
