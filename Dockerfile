@@ -9,8 +9,7 @@ RUN apk update && apk add --no-cache wget curl git zip
 WORKDIR /app
 
 # 克隆 Vue-mmPlayer 项目的代码仓库，包括子模块, generating a dist.zip file.
-# 添加一个随机数作为缓存键，禁用缓存 ?nocache=$(date +%s)
-RUN git clone --recurse-submodules https://github.com/lxg20082008/Vue-mmPlayer.git?nocache=$(date +%s)
+RUN git clone --recurse-submodules https://github.com/lxg20082008/Vue-mmPlayer.git
 
 RUN cd Vue-mmPlayer \
 	&& echo 'VUE_APP_BASE_API_URL = /api' > .env \
@@ -36,7 +35,7 @@ COPY default.conf /etc/nginx/http.d/
 
 # 克隆NeteaseCloudMusicApi项目的代码仓库，并进入 NeteaseCloudMusicApi 目录。
 WORKDIR /app
-RUN git clone https://github.com/lxg20082008/NeteaseCloudMusicApi.git?nocache=$(date +%s)
+RUN git clone https://github.com/lxg20082008/NeteaseCloudMusicApi.git
 # RUN git clone https://${{ secrets.MY_GITHUB_USERNAME }}:${{ secrets.MY_GITHUB_TOKEN }}@github.com/lxg20082008/NeteaseCloudMusicApi.git
 # 清空 npm 缓存，设置 npm 仓库地址，并分别使用 --production 和 --loglevel verbose 选项安装依赖包
 # 安装 npm 和 husky，最后再次使用 --production 选项安装依赖包。
