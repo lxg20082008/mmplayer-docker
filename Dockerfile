@@ -42,7 +42,7 @@ RUN git clone https://github.com/lxg20082008/NeteaseCloudMusicApi.git
 WORKDIR /app/NeteaseCloudMusicApi
 RUN npm config set registry "https://registry.npmmirror.com/"
 RUN npm install -g npm husky
-RUN npm install --production
+RUN npm install --omit=dev
 RUN npm cache clean --force
 # RUN rm -rf node_modules
 # 淘宝镜像过期。禁用SSL验证来绕过证书过期的问题 package-lock.json
